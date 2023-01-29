@@ -1,0 +1,16 @@
+span h1 {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    background: linear-gradient(to right, #4b0082, #0000ff);
+}
+
+div.row {
+    border: 1px solid black;
+}
+
+div.col {
+    border: 1px solid red;
+}
+
