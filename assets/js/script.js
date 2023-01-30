@@ -1,3 +1,4 @@
+// variables
 const API_KEY = "660aa8849ea3b1454ead266471178eb3";
 let searchBtn = document.querySelector("#search-btn");
 let cityInput = document.querySelector("#city-search");
@@ -85,14 +86,65 @@ class Weather {
             currentWeatherDiv.appendChild(humidity);
         }
         humidity.textContent = `Humidity: ${this.humidity}%`;
-    }
+    } // updateCurrentWeather
+
+    update5DayForecast(data) {
+        const forecastData = data.list.filter(weather => {
+            return weather.dt_txt.includes('12:00:00');
+        });
+        let forecastDiv = document.querySelector('#forecast');
+
+        if (!forecastDiv) {
+            forecastDiv = document.createElement('div');
+            forecastDiv.id = 'forecast';
+            document.body.appendChild(forecastDiv);
+        } else {
+            while (forecastDiv.firstChild) {
+                forecastDiv.removeChild(forecastDiv.firstChild);
+            }
+        }
+
+        forecastData.forEach((weather) => {
+            let forecastDate = new Date(weather.dt_txt);
+            let month = forecastDate.getMonth() + 1;
+            let day = forecastDate.getDate();
+            let year = this.forecastDate.getFullYear();
+
+            let card = document.createElement('div');
+            card.classList.add('card', 'col-md-2', 'm-3');
+
+            // create date element
+            let date = document.createElement('p');
+            date.textContent = `${month}/${day}/${year}`;
+            card.appendChild(date);
+
+            // create temperature element
+            let temperature = document.createElement('p');
+            temperature.textContent = `Temp: ${(weather.main.temp - 273.15).toFixed(1)}°C`;
+            card.appendChild(temperature);
+
+            // create wind speed element
+            let windSpeed = document.createElement('p');
+            windSpeed.textContent = `Wind: ${weather.wind.speed} MPH`;
+            card.appendChild(windSpeed);
+
+            // create humidity element
+            let humidity = document.createElement('p');
+            humidity.textContent = `Humidity: ${weather.main.humidity}%`;
+            card.appendChild(humidity);
+
+            forecastDiv.appendChild(card);
+        });
+    } // update5DayForecast
 
 
-    update5DayForecast() {
 
-    }
 
-}
+
+
+
+
+} // Weather class
 
 searchBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -101,7 +153,7 @@ searchBtn.addEventListener("click", (e) => {
         .then((data) => {
             let weather = new Weather(data);
             weather.updateCurrentWeather(data);
-            weather.update5DayForecast();
+            weather.update5DayForecast(data);
         })
         .catch((error) => console.error(error));
 });
