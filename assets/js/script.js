@@ -8,7 +8,7 @@ window.onload = function () {
 
     let getWeatherData = (city) => {
         return new Promise((resolve, reject) => {
-            let url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}`;
+            let url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}`;
 
             fetch(url)
                 .then((response) => response.json())
@@ -40,7 +40,7 @@ window.onload = function () {
         // checks if the elements are already in the html, otherwise it creates it
         updateCurrentWeather(data) {
             let icon = document.createElement('img');
-            icon.src = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`;
+            icon.src = `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`;
 
             currentWeatherDiv.style.border = "solid 1px black";
             this.cityName = data.city.name;
