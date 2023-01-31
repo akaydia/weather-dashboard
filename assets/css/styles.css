@@ -1,5 +1,5 @@
 body {
-    font-family: "Comic Sans MS";
+    font-family: "Roboto", sans-serif;
 }
 span h1 {
     width: 100%;
@@ -11,4 +11,17 @@ span h1 {
 
 .row {
     margin: 1%;
+}
+
+#city-search {
+    width: 120px;
+}
+
+#search-btn {
+    margin-top: 2%;
+}
+
+.card {
+    text-align: center;
+    background-color: lightblue;
 }
