@@ -122,7 +122,7 @@ window.onload = function () {
 
             forecastData.forEach((weather) => {
                 let icon = document.createElement('img');
-                icon.src = `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
+                icon.src = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
                 icon.classList.add("icon");
 
                 let forecastDate = new Date(weather.dt_txt);
